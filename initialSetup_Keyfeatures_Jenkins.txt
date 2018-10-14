@@ -1,0 +1,190 @@
+JAVA 8 and JENKINS 2.x.x and GIT 2.15.x and Maven x.x.x and tomcat 8
+
+STEP 1 : Install java
+STEP 2 : Set JAVA_HOME env variable 
+STEP 3 : Install Jenkins
+STEP 4 : GOTO https://jenkins.io/ and download the jenkins(zip file) for corresponding Operating System
+STEP 5 : Access the url http://localhost:8080/ it will ask the Admin password(will be in the path mentioned in the screen)
+STEP 6 : GOTO the path and copy and paste the password in the web page and click the continue, it will ask instal/select the plugin, skip the step
+STEP 7 : Now jenkins is ready use and click the button
+STEP 8 : To change the admin password meaningfull click on admin -> configure enter the password in the corresponding field
+(Master and slave aritecture)
+STEP 9 : Master :
+			Schedule the job
+			Dispatch the build to the slaves
+			monitor the slaves and record the build result
+			can also execute job directly
+STEP 10: Salve: 
+			Execute the job
+STEP 11: Job/Project : It is the runnable task which are monitored by the jenkins
+STEP 12: Slave/Node :  
+			It is a computer, which helps to build the project for the maste.
+			Jenkins run the program on slave called slave agent 
+			Slaves are registered to the master and the load is distributed and given to the slaves by the master
+			Node means jenkins grid , master and slaves
+STEP 13: Executor :
+			It is a stream of build to run on a node in parallel
+			A node can have one or more executor
+STEP 14: Build :
+			It is a output of each project
+STEP 15: Plugins:
+			It is a piece of software that extends the core functionality of the jenkins
+(UI Overview)
+STEP 16: Left Panels are the Menus along with build queues and executore status 
+		 Centre panels are the area where all the task/job will be listed
+			"New Items" -  to create a new job / project
+			"People" - It is used with in jenkins
+			"Build History" - it shows the build history of master and slave nodes.
+			"Manage Jenkins" - 
+				"Configure Setting" - used to the path for java,maven and etc as globally
+				"Configure GLobal Security" - used to configure the access/view the jenkins system in the web console
+				"Manage plugins" - Add , remove , disable the plugins for the jenkins
+				"System INformation/log" - to trace the trobleshooting of the jenkins system
+			"Credentials" - used to manage all the credential globally used in jenkins	
+(Create a job)			
+STEP 17: Click on the new job and enter the job name
+STEP 18: And then select the project type(Free Style) and press OK, it will redirect to the Job Configure Page with multiple division/tabs
+			"General" - It has only the project name with description and configure how and where the build job shld execute
+			"Source Code Management - SCM" it manages the code of the build , it support the CVS ans Svn
+			"Build Triggers" - To automate the build script 
+			"Build" - Need to determine the build steps, how to build our project/job	
+			"Post-Build Action" - The action can be defined here once the build is completed like emailing/ notification the concern team/person
+STEP 19: Under the BUild section, select one of the option to create first step in the job Creation
+STEP 20: Finally,Save the job and go to the landing page now you can see the list of projects.
+(Runnin the Jenkins Project)
+STEP 21: Run the Job and then go to the job will see the blue ball indicate completed build, and click on it to see the log and any other stuff related to build
+(Setting up Maven based Jenkins Job using GIT as repository)
+STEP 22: Install GIT plugin in the jenkins in the "manage jenkins -> manage plugin and click on the available tab" check the git hub plugin and click install button(NOTE : if u install new plugin, click on the instal without restart button, if u upgrade the plugin, click on the download now and install after restart)
+STEP 23: And check if the selected plugin is installed or not in the "manage jenkins -> manage plugin installed tab"
+STEP 24: Install Maven and set M2_HOME in the env
+STEP 25: GOTO "managed jenkins -> Global Tool Configuration" the setup screen will be displayed.
+STEP 26: Add the JDK, Maven and GIT configure into the jenkins.
+STEP 27: Click Save
+(Creating Maven Project)
+STEP 28: Using git clone https://github.com/jleetutorial/maven-project.git get the predefined project into local system
+STEP 29: Create the New job in the jenkins and give name and description
+STEP 30: GOTO SCM and Check the GIT radio butoon and specify the Git URL and credential(if Required) and branch(if required).
+STEP 31: If any automatic build requires, check the required boxes or else skip it
+STEP 32: Add the build step as Maven (clean package) by selecting the MAven version is already set at "GLobal Cofiguration Tools" and save the job/project
+STEP 33: Click the run/build now button, will see the progress of the Build in the build history
+STEP 34: Once the build is completed, the blue color icon will be display to indicate the success of the build.
+STEP 35: click on the build -> console to see the activity done by the build.
+STEP 36: TO see the corresponding workspace click on work space menu inside the each project
+(Detecting the Changes in the Central Repository and run the build automatically- "Polling Source Code")
+STEP 1 : Click project/job -> Configure and goto the "build Trigger" tab and 
+STEP 2 : Check the "Poll SCM" Option and "Schedule box" will appear.
+STEP 3 : It will follow the syntax of Cron to input the value
+			<minutes(0-59)><tab/space><hours(0-23)><tab/space><day of the month(1-31)><tab/space><month(1-12)><tab/space><day of the week(0-6)>
+			TO Specify Multiple Value:
+			*- All valid Valus
+			M-N - Range of Value
+			A,B,Z - enumerate mutiple values
+			eg : 0 0 * * *(Every day in the midnight), 0 2-4 * * *(2am,3am and 4am every day), * * * * *(every minute) 
+STEP 4 : Enter * * * * * in the Schedule Box and save the configuration
+STEP 5 : Click on the "Git Polling Log" menu item to see the log for each and every polling process
+STEP 6 : Changes will not occurs in others repo, so we can create or clone the others repo
+(Get Public GIT Repo of others to our own git repo)
+STEP 7 : Login into your account
+STEP 8 : Search for jleetutorial/maven-project
+STEP 9 : Goto the appropiate project in git hub and click on the folk button
+STEP 10: Now the public repo will copy into our repo			
+STEP 11: Now change the URL in the Configure -> SCM tab of the project as https://github.com/javasuresh91/maven-project.git
+(To push the changes or to change the soruce in the GIT hub, SETUP SSH in git)
+STEP 12: Follow the steps in the URL https://help.github.com/enterprise/2.13/user/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/	to setup SSH
+STEP 13: Need set up SSH agent from above URL
+STEP 14: Add the SSH key to your GitHub account by following the steps in https://help.github.com/enterprise/2.13/user/articles/adding-a-new-ssh-key-to-your-github-account/		
+STEP 15: Now goto the git hub and copy the SSH url of the needed repo, by clicking the "clone or download" button.			
+STEP 16: Paste the SSH URL to the Configure -> SCM tab of the project as git@github.com:javasuresh91/maven-project.git and save the configure
+(Monitor the Build trigger[Poll SCM] log and automatic build)
+STEP 1 : See the Poll log for every minutes(or schedule done per Schedule box in Build trigger[Poll SCM]) as we configure the Build trigger[Poll SCM] above
+STEP 2 : The log will so as no changes found in repo(so the build automatic will not run because if the change occur, jenkins will fetch the cahnge and run the project as per our configuration)
+STEP 3 : Notice in the build history, the build wont occur.
+STEP 4 : We can give empty commit and push to the repository to run this build automatically.
+			GOTO the project inside and run the git commit --allow-empty -m "Trigger notification"
+			git push
+STEP 5 : Now see the log, it will shown as changes found and see the build history, the automatic build had been run. By clicking the build, you can confirm the build is started by SCM change comment in the web page.
+(Other Option, in Build triggers-'Trigger Build Remotely')
+STEP 1 : GOTO Configure -> Build Triggers tab of the project and check the "Trigger builds remotely" and uncheck the unnecessary option under this tab.
+STEP 2 : Once you check it, the Authentication Token box will be appear to give the customise token name("testToken").
+STEP 3 : copy the url "JENKINS_URL/job/maven-first-project/build?token=TOKEN_NAME or /buildWithParameters?token=TOKEN_NAME"
+STEP 4 : Edit the URL as "<host_name>:<port_no>/job/maven-first-project/build?token=<token_name_entered_in_box> eg: localhost:8080/job/maven-first-project/build?token=testToken
+STEP 5 : Save the project and run the URL in the browser, you can see the build is running the build history section.
+(Other Option, in Build triggers-'Build after other project is build')
+STEP 1 : GOTO Configure -> Build Triggers tab of the project and check the "Build after other project is build" and uncheck the unnecessary option under this tab.
+STEP 2 : Project to watch box will open, you can mention the project name(mutiple name can be given by comma seperated) which need to complete its build then need to trigger this project.
+STEP 3 : 
+(Other Option, in Build triggers-'Build Periodically')
+STEP 1 : GOTO Configure -> Build Triggers tab of the project and check the "Build Periodically" and uncheck the unnecessary option under this tab.
+STEP 2 : Once you check this option, the schedule box will appear, you can mention the schedule details in the Cron Syntax as discussed above
+STEP 3 :
+(Other Option, in Build triggers-'Build When a change in Repo-GIT')
+STEP 1 : GOTO Configure -> Build Triggers tab of the project and check the "Build When a change in GIT" and uncheck the unnecessary option under this tab.
+STEP 2 : NOTE : The Poll SCM will always look into the Repo , but intimation is send to the jenkins by the Git Hub Hook, this will look into git once the commit or push happens preformance will be good. Git Hub Hook need to configure in the Jenkins, Follow the steps in https://wiki.jenkins.io/display/JENKINS/GitHub+Plugin
+(Code Quality/Coverage Metrics Report - Checkstyle(It is a tool for checking code quality like sonar qube,pmd,findBugs))
+STEP 1 : GOTO "Manage Jenkins -> Manage Plugins -> available tab" search for the 'Check style' and check the Checkstyle from the search list and install it.
+STEP 2 : GOTO "Project -> configure -> build tab" append the 'checkstyle:checkstyle' command in the goals.(Used to enable the checkstyle in maven)
+STEP 3 : GOTO "Post-build Actions tab" and select the "Publish Checkstyle analysis"(Used to view the result)  
+STEP 4 : Save the project and click the "Build Now" , Now the build will be triggered
+STEP 5 : GOTO the Current Build Home Page by click the Current build.
+STEP 6 : See the "Checkstyle Warnings" menu item in the left side of the web page.
+STEP 7 : By Clicking on it, we can see the Quality/Coverage Metrics Report in detail. 
+(Support For Other Build Tools Like Ant,Gradle,Shell Script)
+STEP 1 : Need to install plugin and do needful Steps.
+(Continuous Integration Workflow- Untill before step we complied and tested the program, now we need to Deploy in the QA environment for Manual/Automation testing)
+STEP 1 : GOTO Configure -> Post-Build Action tab of the project for generating and archive the Artifact for the Deployment(Testing/Production/Staging).
+STEP 2 : Select the option from the drop down as "Archive the artifacts" , then text box will be populated.
+STEP 3 : Enter '**/*.war' in the text box, it tells, archive all the files  in the war format.
+STEP 4 : Save and build the project and click Build Link in the build history. You can see the Build Artifact in the home page of the build.
+STEP 5 : You can see the console output, where the .war file is generated.
+(Install and configure tomcat for staging environment)
+STEP 6 : download and install tomcat and change the tomcat port(8090) in server.xml
+STEP 7 : Start the server using startup.bat  and access http://localhost:8090/
+STEP 8 : Setup the user and its credential in the tomcat-user.xml, because the jenkins need the credential to access/deploy the artifacts(.war) in the tomcat.
+STEP 9 : Install copy artifact(allow the jenkins to copy the artifact from other project/job) plugin and deploy to container(used to deploy the war to the tomcat) plugin in the jenkins.
+STEP 10: GOTO "Manage Jenkins -> Manage Plugins -> available tab" search for the 'copy artifact' and 'deploy to container' from the search list and install it.
+STEP 11: To Copy the artifact , you need to create a new project/job, by clicking new Item adn give the name and free style and click ok.
+STEP 12: Now the configure page will be open and now go to "Build" tab, add the build steps by selecting 'Copy artifact from other project' in dropdown.
+STEP 13: Some text box will be display in that we need to fill the Project Name(From where the artifact need to copy) and Artifact to copy(The file format which need to copy-**/*.war).
+STEP 14: now go to "Post-Build" tab and select the 'Deploy war/ear to container' option in the drop down
+STEP 15: Some text box will be populated, in that fill the WAR/EAR file(File/file format need to deploy which is copied - **/*.war) and container(Select the tomcat version which is highest)
+STEP 16: It will ask for the manager credential adn tomcat url (http://localhost:8090/) , Enter all the details and save the this newly created project.
+STEP 17: For the continue process, we can add this project to the previous project in the "Post-Build".
+STEP 18: GOTO to the "Post-Build" tab and select 'Build Other Project' option in the dropdown
+STEP 19: Mention the project name(in our case, deploy-war-container) which need to call and save the project.
+STEP 20: Now Start the First application , it will run and second project will be start automatically(We can in the Build Executor Status and Build Executor Status in the landing page of the jenkins), And aslo we can see the console output of the corresponding project of the project/job tracing.
+STEP 21: Now access the URL http://localhost:8090/webapp (war file name)
+(PIPE LINE VIEW CREATION - JENKINS)
+STEP 1 : GOTO "Manage Jenkins -> Manage Plugins -> available tab" search for the 'Build Pipelines' from the search list and install it.
+STEP 2 : Come to the Landing page of the jenkins, and click on the '+' symbol, near to ALL.
+STEP 3 : It Will ask a view name and select a view option(Build Pipeline) and click OK button.
+STEP 4 : With lot of box and option the page will be display , but 'Select Initial Job' need to select and press OK.
+STEP 5 : Pipe line view will be shown to you an dfrom there, we can build the project/job.
+(Parallel Jenkins Build) 
+NOTE : Need to Create a seperate job for isolated functionality. Example, In the first project we have checkstyle functionality , we can remove it from the first project and then can create a new item for checkstyle alone , then add the checkstyle project to the Post-Build of the first project with the comma seperated, because already the second project(deployment) in the Post-Build of first project.
+(Deploy to Production - Full Continuous Delivery Pipeline)
+ Same as above Steps
+(Pipeline as Code(Fully Automative process) - Jenkins)
+ Need R&D and learn it 
+(Distributed Jenkins Builds = Master-Slave Architecture)
+STEP 1 : Create a cloud instance in AWS,Azure,Digitalocean and etc.
+STEP 2 : Install the Jenkins as Master in the cloud instance.
+STEP 3 : Once the installation is completed, we can access the jenkins by <ipAddress of the cloud system>:8080
+STEP 4 : And do the initial steps for the setup as usaul.
+STEP 5 : Now it will act as master node and next into setup our slave node in cloud as another instance and follow the above steps as seen above.
+(Start the slave node by master node via automatic SSH - without password)
+STEP 6 : Need to Create public and private key in the master node jenkins.
+STEP 7 : Copy the public from master to slove SSH folder. This key generating and sharing is used to avoid password login each time while accessing master by the salve node.
+STEP 8 : Copy the slave agent jar from the master node to the slave node by <master node ip address>:8080/jnlpJars/slave.jar
+STEP 9 : make sure java is install in the slave node, beacause slave agent is the small java appliaction in the jar format.
+STEP 10: GOTO the master node jenkins landing page "Manage Jenkins -> Manage Nodes" you will the only one node in the web page(cluster), that is master(self)
+STEP 11: Click on the 'New Node' and give a name for the node and click the permanent Agent option and click OK.
+STEP 12: Then List Box will be displayed, in that we need to fill '# of Executor(2)' ,'Remote Root Directory(/var/custome)','Launch Method(Launch Agent via execution)'and 'Launch Command(ssh <slave node ip address> java -jar slave.jar)'  and click save.
+STEP 13: Now see the cluster  page will have one more node, it is a slave.
+STEP 14: Now create  3 or more job with simple shell command execution in master node.
+STEP 15: GOTO to the landing page of master and you can see the slave machine listed in the 'Build Executor Status' Now start the 3 job simultaneously, now you can see the job exec done by the both node by sharing.
+(Label Jenkins Build - In above Steps the jobs will run in any node based on availablity, to overcome we can use label based jenkins build)
+STEP 1 :  GOTO to the cluster page, click on the slave node -> configure change the 'Usage' drop to the 'Label expression' and give the name in the 'Label' text box(Slave), then click save.
+STEP 2 : Again GOTO to the Cluster page do the before steps for the master node also, but give label name as master.
+STEP 3 : GOTO all the 3 job and click configure and check the option 'Restrict where this project can be run' and give the Label expression as master or slave. and save the project.
+STEP 4 : Now run the 3 job and watch the Build Executor.
+(Future Learning) - www.level-up.one/devops-pdf-book/
